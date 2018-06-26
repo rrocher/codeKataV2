@@ -58,13 +58,34 @@ public class App
 	
     public static void main( String[] args )
     {
-    	String fileName = "/home/rrocher/Downloads/wordlist.txt";
+	String fileName = "/home/rrocher/Downloads/wordlist.txt";
+	Path path = Paths.get(fileName);
 
-    	if (args.length > 0)
+	boolean pathExists =
+		Files.exists(path,
+		    new LinkOption[]{ LinkOption.NOFOLLOW_LINKS});
+	    
+    	if (args.length > 0){
     		fileName = args[1];
+	}
+	else if (pathExists == false){
+		System.out.println("Please make sure to submit a correct path for the word list");
+		System.out.println("Usage: ./app wordlist dictionnary");
+	   	return 0;
+	}
 
-    	if (args.length > 1)
+	path = Paths.get(fileDictionnary);
+	pathExists =
+		Files.exists(path,
+		    new LinkOption[]{ LinkOption.NOFOLLOW_LINKS});
+    	if (args.length > 1){
     		fileDictionnary = args[2];
+	}		   
+	else if (pathExists == false){
+		System.out.println("Please make sure to submit a correct path for the dictionnary");
+		System.out.println("Usage: ./app wordlist dictionnary");
+	}
+    	
 
     	setBloomFilterSpeller();
     	
