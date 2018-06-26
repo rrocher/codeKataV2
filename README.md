@@ -1,2 +1,2 @@
 # codeKata V2
-# codeKataV2
+This version will make use of multithreading thanks to the parallel streaming technique in Java 8 in order to speed the processing.. Basically, instead of processing the list of string one after the other, we will stream in a parallel fashion and let the JVM fork multiple threads in the background in order to process small chunks of the list in parallel. We will put the result in a concurrent hashmap to ensure the synchronization.
